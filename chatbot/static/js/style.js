@@ -169,4 +169,60 @@ document.addEventListener('DOMContentLoaded', function () {
       themeBtn.textContent = '🌙 Night Mode';
     }
   };
+
+  // View Older Conversation button
+  document.getElementById('view-older-btn').onclick = function () {
+    fetch('/api/conversations')
+      .then(res => res.json())
+      .then(conversations => {
+        if (!Array.isArray(conversations) || conversations.length === 0) {
+          alert('No older conversations found.');
+          return;
+        }
+        // Clear current chats and load from DB
+        chats = conversations.map(conv => ({
+          id: conv.id, // <-- store id
+          title: `Chat ${conv.id}`,
+          messages: [
+            { role: 'user', text: conv.user_message },
+            { role: 'bot', text: conv.bot_response }
+          ]
+        }));
+        currentChatIndex = 0;
+        renderChatList();
+        renderChatHistory();
+      })
+      .catch(() => {
+        alert('Failed to load older conversations.');
+      });
+  };
+
+  // Delete Conversation button
+  document.getElementById('delete-conv-btn').onclick = function () {
+    // Only works for conversations loaded from DB (with id)
+    const currentChat = chats[currentChatIndex];
+    if (!currentChat || !currentChat.id) {
+      alert('This conversation cannot be deleted.');
+      return;
+    }
+    if (!confirm('Are you sure you want to delete this conversation?')) return;
+
+    fetch(`/api/conversation/${currentChat.id}`, { method: 'DELETE' })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          chats.splice(currentChatIndex, 1);
+          if (currentChatIndex >= chats.length) currentChatIndex = chats.length - 1;
+          if (chats.length === 0) {
+            chats.push({ title: '', messages: [] });
+            currentChatIndex = 0;
+          }
+          renderChatList();
+          renderChatHistory();
+        } else {
+          alert('Failed to delete conversation.');
+        }
+      })
+      .catch(() => alert('Failed to delete conversation.'));
+  };
 });
