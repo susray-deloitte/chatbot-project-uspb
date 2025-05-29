@@ -1,0 +1,248 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ece5dd;
+}
+.container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 250px;
+  background: #075e54;
+  color: #fff;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar h2 {
+  margin-top: 0;
+}
+#chat-list {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  overflow-y: auto;
+}
+#chat-list li {
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  background: #128c7e;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#chat-list li.active {
+  background: #25d366;
+  color: #075e54;
+}
+#new-chat-btn {
+  background: #25d366;
+  color: #075e54;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+header {
+  padding: 10px;
+  background: #f0f0f0;
+  text-align: right;
+}
+#clear-chat-btn {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.chat-history {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.message {
+  margin-bottom: 15px;
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 10px;
+  word-break: break-word;
+}
+.message.user {
+  align-self: flex-end;
+  background: #dcf8c6;
+}
+.message.bot {
+  align-self: flex-start;
+  background: #ece5dd;
+}
+.chat-form {
+  display: flex;
+  padding: 10px;
+  background: #f0f0f0;
+}
+#chat-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.chat-form button {
+  margin-left: 10px;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.chat-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.chat-list-item span {
+  flex: 1;
+  cursor: pointer;
+}
+.rename-btn, .delete-btn {
+  background: #eee;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-left: 2px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.rename-btn:hover {
+  background: #cce5ff;
+}
+.delete-btn:hover {
+  background: #ffcccc;
+}
+.menu-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.menu-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+.menu-btn:hover {
+  background: #128c7e;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  background: #fff;
+  min-width: 80px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  z-index: 10;
+  flex-direction: column;
+}
+.dropdown-menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #333;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+.dropdown-menu button:hover {
+  background: #f0f0f0;
+}
+#toggle-theme-btn {
+  background: #128c7e;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.2s;
+}
+#toggle-theme-btn:hover {
+  background: #25d366;
+  color: #075e54;
+}
+body.night-mode #toggle-theme-btn {
+  background: #393e46;
+  color: #e0e0e0;
+}
+body.night-mode #toggle-theme-btn:hover {
+  background: #25d366;
+  color: #23272f;
+}
+
+/* Night mode styles */
+body.night-mode {
+  background: #181a20;
+  color: #e0e0e0;
+}
+body.night-mode .container {
+  background: #181a20;
+}
+body.night-mode .sidebar {
+  background: #222831;
+  color: #e0e0e0;
+}
+body.night-mode .chat-section {
+  background: #181a20;
+}
+body.night-mode header {
+  background: #23272f;
+}
+body.night-mode .chat-history {
+  background: #181a20;
+}
+body.night-mode .message.user {
+  background: #2a3b4d;
+  color: #e0e0e0;
+}
+body.night-mode .message.bot {
+  background: #23272f;
+  color: #e0e0e0;
+}
+body.night-mode .chat-form {
+  background: #23272f;
+}
+body.night-mode #chat-input {
+  background: #23272f;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+body.night-mode .chat-form button,
+body.night-mode #clear-chat-btn,
+body.night-mode #new-chat-btn,
+body.night-mode .menu-btn,
+body.night-mode .rename-btn,
+body.night-mode .delete-btn {
+  background: #393e46;
+  color: #e0e0e0;
+}
+body.night-mode .dropdown-menu {
+  background: #23272f;
+  color: #e0e0e0;
+}
