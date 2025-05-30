@@ -23,7 +23,10 @@ app.secret_key = "ajhgyt321%#$hj23"
 def index():
     if "user_id" not in session:
         return redirect(url_for("login"))
-    return render_template("index.html")
+    session_db = Session()
+    user = session_db.query(User).filter_by(id=session["user_id"]).first()
+    session_db.close()
+    return render_template("index.html", username=user.username if user else "")
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
@@ -125,6 +128,7 @@ def rename_conversation(conv_id):
     if "user_id" not in session:
         return jsonify({"success": False}), 401
     session_db = Session()
+    data = request.get_json()
     conversation = session_db.query(Conversation).filter_by(id=conv_id, user_id=session["user_id"]).first()
     new_title = data.get("title", "").strip()
     if conversation and new_title:
@@ -163,6 +167,10 @@ def signup():
             return render_template("signup.html", error="Username or email already exists")
         user = User(email=email, username=username, password=generate_password_hash(password))
         session_db.add(user)
+        session_db.commit()
+        # Create a default conversation for the new user
+        conversation = Conversation(title="New Chat", user_id=user.id)
+        session_db.add(conversation)
         session_db.commit()
         session_db.close()
         return redirect(url_for("login"))

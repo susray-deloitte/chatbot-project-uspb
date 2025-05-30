@@ -377,7 +377,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Logout button
+  // Profile menu logic
+  const profileMenuWrapper = document.querySelector('.profile-menu-wrapper');
+  const profileBtn = document.getElementById('profile-btn');
+  const profileDropdown = document.getElementById('profile-dropdown');
+
+  profileBtn.onclick = function (e) {
+    e.stopPropagation();
+    profileMenuWrapper.classList.toggle('open');
+  };
+
+  // Hide dropdown when clicking outside
+  document.addEventListener('click', function () {
+    profileMenuWrapper.classList.remove('open');
+  });
+
+  // Logout button logic (already present, but make sure it's here)
   document.getElementById('logout-btn').onclick = function () {
     window.location.href = '/logout';
   };
