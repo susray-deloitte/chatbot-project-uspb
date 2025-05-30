@@ -377,6 +377,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
+  // Logout button
+  document.getElementById('logout-btn').onclick = function () {
+    window.location.href = '/logout';
+  };
+
   // Initial load
   loadConversations();
 });

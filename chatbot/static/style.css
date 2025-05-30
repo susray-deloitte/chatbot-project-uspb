@@ -281,3 +281,52 @@ body.night-mode #delete-conv-btn {
   background: #b71c1c;
   color: #fff;
 }
+
+/* Auth container styles */
+.auth-container {
+  max-width: 350px;
+  margin: 80px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.auth-container input {
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.auth-container button {
+  background: #25d366;
+  color: #075e54;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.auth-container .error {
+  color: #b71c1c;
+  margin-bottom: 10px;
+}
+#logout-btn {
+  background: #888;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.2s;
+}
+#logout-btn:hover {
+  background: #333;
+  color: #fff;
+}
+body.night-mode #logout-btn {
+  background: #23272f;
+  color: #e0e0e0;
+}
